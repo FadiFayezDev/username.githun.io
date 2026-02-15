@@ -1,65 +1,85 @@
-import Image from "next/image";
+﻿import Contact from "@/components/Contact";
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import { portfolio } from "@/lib/portfolio-data";
+
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "Works", href: "#works" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="container-shell py-4 md:py-8">
+      <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+        <aside className="panel reveal-up h-fit p-6 lg:sticky lg:top-6">
+          <div className="flex items-center gap-3">
+            <div className="grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-black/35 text-lg font-semibold text-[var(--accent)]">
+              <img src="/MyPhoto.jpg" alt="" className="rounded-full" />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">Portfolio</p>
+              <h1 className="text-xl font-semibold text-white">Fadi Fayez</h1>
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm leading-7 text-[var(--muted)]">
+            .NET Full-Stack developer crafting modern web products with strong backend architecture and clean UI.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+          <span className="accent-line mt-6 block" />
+
+          <nav className="mt-6 space-y-1" aria-label="Main sections">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="focus-ring block rounded-lg px-3 py-2 text-sm text-zinc-200 transition hover:bg-[var(--surface-2)] hover:text-[var(--accent)]"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {portfolio.contactLinks.map((link) => {
+              const isExternal = link.href.startsWith("http");
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noreferrer" : undefined}
+                  className="focus-ring rounded-md border border-[var(--border)] px-3 py-2 text-xs uppercase tracking-[0.12em] text-zinc-300 transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
+        </aside>
+
+        <main className="scrollbar-custom space-y-6">
+          <section id="home" className="scroll-mt-24">
+            <Hero data={portfolio.hero} />
+          </section>
+
+          <section id="works" className="scroll-mt-24">
+            <Projects projects={portfolio.projects} />
+          </section>
+
+          <section id="skills" className="scroll-mt-24">
+            <Skills groups={portfolio.skillGroups} />
+          </section>
+
+          <section id="contact" className="scroll-mt-24">
+            <Contact links={portfolio.contactLinks} />
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
