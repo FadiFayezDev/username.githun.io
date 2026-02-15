@@ -3,6 +3,7 @@
   role: string;
   summary: string;
   coverImage: string;
+  myPhoto: string;
   ctaLabel: string;
   ctaHref: string;
 };
@@ -26,13 +27,16 @@ export type ContactLink = {
   href: string;
 };
 
+const buildFix = '.';
+
 export const portfolio = {
   hero: {
     name: "Fadi Fayez",
     role: ".NET Full-Stack Developer | Next.js | UI/UX",
     summary:
       "I design and build clean, high-performance web products with strong backend architecture and modern frontend experience.",
-    coverImage: "/profile-cover.jpg",
+    coverImage: `${buildFix}/profile-cover.jpg`,
+    myPhoto: `${buildFix}/MyPhoto.jpg`,
     ctaLabel: "View My Work",
     ctaHref: "#works",
   } satisfies HeroData,
@@ -40,7 +44,7 @@ export const portfolio = {
     {
       title: "Stocka",
       description: "Inventory and sales platform with robust APIs and analytics dashboards.",
-      image: "/MyWorks/stocka.png",
+      image: `${buildFix}/MyWorks/stocka.png`,
       tech: ["ASP.NET Core", "SQL Server", "Next.js"],
       liveUrl: "#",
       repoUrl: "#",
@@ -48,7 +52,7 @@ export const portfolio = {
     {
       title: "Next.js Dashboard",
       description: "A modular admin dashboard with reusable widgets and strong UX consistency.",
-      image: "/profile-cover.jpg",
+      image: `${buildFix}/profile-cover.jpg`,
       tech: ["Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "#",
       repoUrl: "#",
@@ -68,7 +72,7 @@ export const portfolio = {
     {
       title: "UI Concept",
       description: "Experimental visual system for dark product interfaces and dashboard patterns.",
-      image: "/profile-cover.jpg",
+      image: `${buildFix}/profile-cover.jpg`,
       tech: ["Figma", "Design System", "Prototyping"],
     },
     {

@@ -18,7 +18,7 @@ export default function Home() {
         <aside className="panel reveal-up h-fit p-6 lg:sticky lg:top-6">
           <div className="flex items-center gap-3">
             <div className="grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-black/35 text-lg font-semibold text-[var(--accent)]">
-              <img src="/MyPhoto.jpg" alt="" className="rounded-full" />
+              <img src={portfolio.hero.myPhoto} alt="" className="rounded-full" />
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">Portfolio</p>
